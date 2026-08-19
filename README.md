@@ -83,68 +83,91 @@
 
 ```
 tram-thoi-tiet/
-├── .github/                      # GitHub Actions CI/CD & Issue/PR Templates
-│   ├── ISSUE_TEMPLATE/
-│   │   ├── bug_report.md
-│   │   └── feature_request.md
-│   ├── PULL_REQUEST_TEMPLATE.md
-│   └── workflows/
-│       ├── code-quality.yml
-│       ├── esp32-ci.yml
-│       └── qt-ci.yml
-├── docs/                         # Tài liệu kỹ thuật chi tiết
-│   ├── ARCHITECTURE.md           # Kiến trúc phần mềm & luồng dữ liệu
-│   ├── DEPLOYMENT_GUIDE.md       # Hướng dẫn triển khai Raspberry Pi / Linux
-│   ├── HARDWARE_PINOUT.md        # Sơ đồ nối dây & thông số phần cứng
-│   └── MQTT_API.md               # Đặc tả giao thức MQTT & cấu trúc Payload
-├── esp32/                        # PlatformIO Firmware cho ESP32
-│   ├── include/                  # Header files cấu hình & driver
-│   │   ├── bmp280.h
-│   │   ├── cau_hinh.h            # File cấu hình Wi-Fi, MQTT, chân GPIO
-│   │   ├── cau_hinh.example.h    # File mẫu cấu hình
-│   │   ├── relay.h
-│   │   ├── tsl2561.h
-│   │   ├── wifi_mqtt.h
-│   │   └── xu_ly_lenh.h
-│   ├── src/                      # Mã nguồn C++ Arduino/ESP32
-│   │   ├── bmp280.cpp
-│   │   ├── main.cpp
-│   │   ├── relay.cpp
-│   │   ├── tsl2561.cpp
-│   │   ├── wifi_mqtt.cpp
-│   │   └── xu_ly_lenh.cpp
-│   └── platformio.ini            # Cấu hình PlatformIO & thư viện phụ thuộc
-├── package/                      # Gói ứng dụng đóng gói triển khai cho Pi
-│   └── tram-thoi-tiet/
-│       ├── config/cau_hinh.ini   # File cấu hình INI của Host App
-│       ├── data/                 # Thư mục lưu database SQLite
-│       └── scripts/run_pi.sh     # Script khởi chạy ứng dụng trên Pi
-├── qt/                           # Ứng dụng Qt6 C++ Host GUI
-│   ├── CMakeLists.txt            # CMake build script
-│   ├── include/                  # Header files của Qt Host
-│   │   ├── app_controller.h
-│   │   ├── cua_so_chinh.h
-│   │   ├── dang_nhap.h
-│   │   ├── database_service.h
-│   │   ├── mqtt_service.h
-│   │   └── ...
-│   ├── resources/                # Icons & assets QRC
-│   ├── src/                      # Mã nguồn triển khai Qt Host
-│   └── ui/                       # Giao diện Qt Designer (.ui)
-├── scripts/                      # Các scripts tự động hoá build & deploy
-│   ├── build_arm64.sh            # Biên dịch chéo cho Raspberry Pi (ARM64)
-│   ├── build_host.sh             # Biên dịch cho máy tính Host x86_64
-│   ├── deploy_pi.sh              # Script đẩy gói và cài đặt tự động lên Pi qua SSH
-│   ├── run_from_qtcreator.sh     # Chạy nhanh từ Qt Creator
-│   └── run_host.sh               # Chạy ứng dụng trên môi trường Host
-├── .clang-format                 # Quy chuẩn định dạng mã nguồn C++
-├── .editorconfig                 # Quy chuẩn trình soạn thảo mã nguồn
-├── .gitignore                    # Các tệp tin loại trừ khỏi Git
-├── CHANGELOG.md                  # Nhật ký thay đổi các phiên bản
-├── CODE_OF_CONDUCT.md            # Quy tắc ứng xử cộng đồng
-├── CONTRIBUTING.md               # Hướng dẫn đóng góp mã nguồn
-├── LICENSE                       # Giấy phép phần mềm MIT
-└── README.md                     # Tài liệu chính của dự án
+├── .github/                              # Cấu hình GitHub Actions CI/CD & biểu mẫu
+│   ├── ISSUE_TEMPLATE/                   # Mẫu báo cáo issue
+│   │   ├── bug_report.md                 # Mẫu báo cáo lỗi phần mềm / phần cứng
+│   │   └── feature_request.md            # Mẫu đề xuất phát triển tính năng mới
+│   ├── PULL_REQUEST_TEMPLATE.md          # Biểu mẫu chuẩn khi mở Pull Request
+│   └── workflows/                        # Quy trình kiểm thử & tự động hóa CI/CD
+│       ├── code-quality.yml              # Kiểm tra quy chuẩn mã nguồn C++ (Clang-Format)
+│       ├── esp32-ci.yml                  # Tự động build & kiểm tra firmware ESP32
+│       └── qt-ci.yml                     # Tự động build ứng dụng Qt6 Host trên Ubuntu runner
+├── docs/                                 # Tài liệu kỹ thuật chi tiết của dự án
+│   ├── ARCHITECTURE.md                   # Kiến trúc phần mềm, sơ đồ luồng dữ liệu & State Machine
+│   ├── DEPLOYMENT_GUIDE.md               # Hướng dẫn chi tiết triển khai máy tính Host & Raspberry Pi
+│   ├── HARDWARE_PINOUT.md                # Sơ đồ nối dây GPIO/I2C, thông số cảm biến & rơ-le
+│   └── MQTT_API.md                       # Đặc tả chi tiết MQTT Topics, JSON schema & chu trình bản tin
+├── esp32/                                # Mã nguồn Firmware ESP32 (PlatformIO)
+│   ├── include/                          # Header files cấu hình & driver phần cứng
+│   │   ├── bmp280.h                      # Driver cảm biến nhiệt độ & áp suất BMP280 (I2C)
+│   │   ├── cau_hinh.h                    # Cấu hình Wi-Fi, MQTT Broker, chân GPIO
+│   │   ├── cau_hinh.example.h            # Cấu hình mẫu ban đầu
+│   │   ├── relay.h                       # Module điều khiển rơ-le Quạt & Đèn
+│   │   ├── tsl2561.h                     # Driver cảm biến cường độ ánh sáng TSL2561 (I2C)
+│   │   ├── wifi_mqtt.h                   # Quản lý kết nối Wi-Fi & MQTT Client
+│   │   └── xu_ly_lenh.h                  # Xử lý gói tin JSON, cảnh báo ngưỡng & điều khiển
+│   ├── src/                              # Mã nguồn triển khai logic Firmware C++
+│   │   ├── bmp280.cpp                    # Hiện thực khởi tạo & đọc dữ liệu BMP280
+│   │   ├── main.cpp                      # Hàm setup(), loop() chính và chu kỳ lấy mẫu 2s
+│   │   ├── relay.cpp                     # Hiện thực điều khiển trạng thái GPIO rơ-le
+│   │   ├── tsl2561.cpp                   # Hiện thực đọc cường độ sáng Lux từ TSL2561
+│   │   ├── wifi_mqtt.cpp                 # Hiện thực kết nối, auto-reconnect Wi-Fi/MQTT & gửi telemetry
+│   │   └── xu_ly_lenh.cpp                # Hiện thực logic tự động/thủ công & thực thi lệnh
+│   └── platformio.ini                    # File cấu hình PlatformIO (board, framework, dependencies)
+├── package/                              # Đóng gói sản phẩm để phân phối lên Raspberry Pi
+│   ├── tram-thoi-tiet/                   # Thư mục gốc chứa gói ứng dụng chạy độc lập
+│   │   ├── bin/                          # Thư mục chứa file nhị phân thực thi ứng dụng
+│   │   ├── config/                       # Thư mục cấu hình hệ thống
+│   │   │   └── cau_hinh.ini              # File INI cấu hình Broker, Database, Threshold mặc định
+│   │   ├── data/                         # Thư mục chứa cơ sở dữ liệu SQLite (tram_thoi_tiet.db)
+│   │   ├── logs/                         # Thư mục lưu trữ file log hoạt động của ứng dụng
+│   │   └── scripts/                      # Thư mục kịch bản vận hành
+│   │       └── run_pi.sh                 # Script nạp môi trường và khởi chạy trên Raspberry Pi
+│   └── tram-thoi-tiet-arm64.tar.gz       # Gói nén lưu trữ sẵn sàng phân phối cho ARM64
+├── qt/                                   # Mã nguồn Ứng dụng Qt6 C++ Host GUI Dashboard
+│   ├── CMakeLists.txt                    # Kịch bản biên dịch CMake cho ứng dụng Qt6
+│   ├── include/                          # Header files định nghĩa các lớp và cấu trúc dữ liệu
+│   │   ├── app_controller.h              # Central Controller điều phối kết nối UI, Service và State
+│   │   ├── canh_bao_data.h               # Cấu trúc dữ liệu sự kiện cảnh báo ngưỡng (Alert Struct)
+│   │   ├── csv_exporter.h                # Module xuất dữ liệu lịch sử đo đạc ra file CSV
+│   │   ├── cua_so_chinh.h                # Quản lý giao diện chính MainWindow, biểu đồ & bảng dữ liệu
+│   │   ├── dang_nhap.h                   # Dialog đăng nhập và xác thực người dùng
+│   │   ├── database_service.h            # SQLite3 Database Service (quản lý telemetry, user, alert log)
+│   │   ├── mqtt_service.h                # MQTT Client Service (kết nối, subscribe/publish dữ liệu)
+│   │   ├── quan_ly_tai_khoan.h           # Form & logic quản trị người dùng, phân quyền RBAC
+│   │   ├── sensor_data.h                 # Cấu trúc dữ liệu gói tin cảm biến (Sensor Data Struct)
+│   │   └── settings_service.h            # Service đọc/ghi file cấu hình INI (QSettings)
+│   ├── resources/                        # Tài nguyên đồ họa nhúng ứng dụng
+│   │   └── resources.qrc                 # File định nghĩa Qt Resource Collection (icons, styles)
+│   ├── src/                              # Mã nguồn triển khai logic C++ Qt Host
+│   │   ├── app_controller.cpp            # Hiện thực luồng điều phối chính, kết nối tín hiệu Signal/Slot
+│   │   ├── csv_exporter.cpp              # Hiện thực định dạng và xuất file CSV báo cáo
+│   │   ├── cua_so_chinh.cpp              # Hiện thực tương tác giao diện, vẽ biểu đồ & hiển thị trạng thái
+│   │   ├── dang_nhap.cpp                 # Hiện thực xác thực tài khoản & điều hướng người dùng
+│   │   ├── database_service.cpp          # Hiện thực các truy vấn SQLite (CRUD Sensor, User, Alert)
+│   │   ├── main.cpp                      # Điểm khởi chạy chương trình (Main Entrypoint)
+│   │   ├── mqtt_service.cpp              # Hiện thực giao tiếp Mosquitto MQTT & phân tích JSON payload
+│   │   ├── quan_ly_tai_khoan.cpp         # Hiện thực thêm/sửa/xóa và quản lý tài khoản người dùng
+│   │   └── settings_service.cpp          # Hiện thực đọc/lưu cài đặt hệ thống vào cau_hinh.ini
+│   └── ui/                               # Giao diện thiết kế trực quan Qt Designer (.ui)
+│       ├── cua_so_chinh.ui               # Thiết kế màn hình giám sát chính (Dashboard, Charts, Logs)
+│       ├── dang_nhap.ui                  # Thiết kế màn hình đăng nhập hệ thống
+│       └── quan_ly_tai_khoan.ui          # Thiết kế cửa sổ quản lý tài khoản và phân quyền
+├── scripts/                              # Kịch bản tự động hóa biên dịch & triển khai
+│   ├── build_arm64.sh                    # Biên dịch chéo cho Raspberry Pi (Linux ARM64)
+│   ├── build_host.sh                     # Biên dịch nhanh cho máy tính Host (Linux x86_64)
+│   ├── deploy_pi.sh                      # Tự động hóa build, đóng gói và triển khai lên Pi qua SSH/SCP
+│   ├── run_from_qtcreator.sh             # Cấu hình môi trường khi debug/chạy trực tiếp từ Qt Creator
+│   └── run_host.sh                       # Script khởi chạy ứng dụng nhanh trên máy tính Host
+├── .clang-format                         # Quy chuẩn định dạng mã nguồn C++ (Google Style)
+├── .editorconfig                         # Thiết lập thống nhất định dạng file cho các IDE
+├── .gitignore                            # Danh sách tệp tin và thư mục loại trừ khỏi Git
+├── CHANGELOG.md                          # Nhật ký chi tiết các phiên bản cập nhật
+├── CODE_OF_CONDUCT.md                    # Quy tắc ứng xử và tiêu chuẩn cộng đồng
+├── CONTRIBUTING.md                       # Hướng dẫn đóng góp mã nguồn & quy trình Git
+├── LICENSE                               # Giấy phép bản quyền mã nguồn mở MIT
+├── README.md                             # Tài liệu giới thiệu & hướng dẫn sử dụng toàn diện
+└── SECURITY.md                           # Chính sách bảo mật và hướng dẫn báo cáo lỗ hổng
 ```
 
 ---
