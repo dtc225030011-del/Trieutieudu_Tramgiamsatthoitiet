@@ -1,0 +1,28 @@
+name: Code Quality & Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  clang-format-check:
+    name: Clang-Format Style Check
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format
+
+      - name: Run Clang-Format Check
+        run: |
+          find qt/src qt/include esp32/src esp32/include -name "*.cpp" -o -name "*.h" | xargs clang-format --dry-run --Werror || {
+            echo "::error::Code formatting does not match .clang-format rules. Run 'clang-format -i' on modified files."
+            exit 1
+          }

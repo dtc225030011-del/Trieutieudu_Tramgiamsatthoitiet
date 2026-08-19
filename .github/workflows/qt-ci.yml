@@ -1,0 +1,52 @@
+name: Qt Host CI
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'qt/**'
+      - 'scripts/**'
+      - '.github/workflows/qt-ci.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'qt/**'
+      - 'scripts/**'
+      - '.github/workflows/qt-ci.yml'
+
+jobs:
+  build-qt:
+    name: Build Qt Host Application (Ubuntu)
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            ninja-build \
+            pkg-config \
+            qt6-base-dev \
+            qt6-tools-dev \
+            libmosquitto-dev \
+            libsqlite3-dev
+
+      - name: Configure CMake
+        run: |
+          cmake -S qt -B build \
+            -GNinja \
+            -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build Application
+        run: |
+          cmake --build build --parallel $(nproc)
+
+      - name: Verify Binary
+        run: |
+          test -f build/tram_thoi_tiet_qt || exit 1
+          echo "Build successful: build/tram_thoi_tiet_qt generated."

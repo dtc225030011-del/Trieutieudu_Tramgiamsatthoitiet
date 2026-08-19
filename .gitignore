@@ -1,10 +1,58 @@
+# Build directories & CMake output
+build/
 build-*/
+cmake-build-*/
+.ninja_*
+*.ninja
+CMakeCache.txt
+CMakeFiles/
+Makefile
 *.user
+*.user.*
+
+# PlatformIO & Embedded
+.pio/
+.pioenvs/
+.piolibdeps/
+.clangd/
+compile_commands.json
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 *.bak
 *.backup
 *.before_*
-.ninja_*
-*.tar.gz
+
+# Compiled Binaries & Libraries
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
 package/bin/*
-.pio/
-.vscode/
+package/tram-thoi-tiet/bin/tram_thoi_tiet_qt
+
+# Archives & Packages
+*.tar.gz
+*.zip
+*.7z
+
+# Database & Runtime Logs
+*.sqlite
+*.sqlite3
+*.db
+*.log
+logs/
+package/tram-thoi-tiet/logs/*
+package/tram-thoi-tiet/data/*.sqlite
+
+# OS generated
+.DS_Store
+Thumbs.db
