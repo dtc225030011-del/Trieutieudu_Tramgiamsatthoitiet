@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DangNhap</class>
+
+ <widget class="QDialog" name="DangNhap">
+
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>520</width>
+    <height>520</height>
+   </rect>
+  </property>
+
+  <property name="minimumSize">
+   <size>
+    <width>520</width>
+    <height>520</height>
+   </size>
+  </property>
+
+  <property name="maximumSize">
+   <size>
+    <width>520</width>
+    <height>520</height>
+   </size>
+  </property>
+
+  <property name="windowTitle">
+   <string>Dang nhap</string>
+  </property>
+
+  <property name="styleSheet">
+   <string notr="true">
+QDialog {
+    background-color: #eef3f8;
+}
+
+QFrame#frameDangNhap {
+    background-color: white;
+    border: 1px solid #d5dfeb;
+    border-radius: 18px;
+}
+
+QLabel#labelLogo {
+    color: #173257;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+QLabel#labelMoTa {
+    color: #71849a;
+    font-size: 12px;
+}
+
+QLabel#labelTenDangNhap,
+QLabel#labelMatKhau {
+    color: #173257;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+QLineEdit {
+    background-color: #f8fafc;
+    border: 1px solid #ccd8e6;
+    border-radius: 9px;
+    padding: 10px;
+    color: #173257;
+    font-size: 14px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #337aba;
+}
+
+QPushButton#nutDangNhap {
+    background-color: #337aba;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 11px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+QPushButton#nutDangNhap:hover {
+    background-color: #286aa6;
+}
+
+QPushButton#nutHienMatKhau {
+    background-color: transparent;
+    color: #337aba;
+    border: none;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+QLabel#labelLoi {
+    color: #c62828;
+    font-size: 12px;
+}
+
+QLabel#labelFooter {
+    color: #90a0b3;
+    font-size: 11px;
+}
+   </string>
+  </property>
+
+  <layout class="QVBoxLayout" name="layoutNgoai">
+
+   <property name="leftMargin">
+    <number>55</number>
+   </property>
+
+   <property name="topMargin">
+    <number>50</number>
+   </property>
+
+   <property name="rightMargin">
+    <number>55</number>
+   </property>
+
+   <property name="bottomMargin">
+    <number>50</number>
+   </property>
+
+   <item>
+
+    <widget class="QFrame" name="frameDangNhap">
+
+     <layout class="QVBoxLayout" name="layoutDangNhap">
+
+      <property name="leftMargin">
+       <number>36</number>
+      </property>
+
+      <property name="topMargin">
+       <number>35</number>
+      </property>
+
+      <property name="rightMargin">
+       <number>36</number>
+      </property>
+
+      <property name="bottomMargin">
+       <number>30</number>
+      </property>
+
+      <property name="spacing">
+       <number>14</number>
+      </property>
+
+      <item>
+       <widget class="QLabel" name="labelLogo">
+        <property name="text">
+         <string>TRAM GIAM SAT
+MOI TRUONG</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="labelMoTa">
+        <property name="text">
+         <string>ESP32 • Raspberry Pi • MQTT • SQLite</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="spacer1">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>12</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="labelTenDangNhap">
+        <property name="text">
+         <string>TEN DANG NHAP</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLineEdit" name="editTenDangNhap">
+        <property name="placeholderText">
+         <string>Nhap ten dang nhap</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="labelMatKhau">
+        <property name="text">
+         <string>MAT KHAU</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <layout class="QHBoxLayout" name="layoutMatKhau">
+
+        <item>
+         <widget class="QLineEdit" name="editMatKhau">
+          <property name="placeholderText">
+           <string>Nhap mat khau</string>
+          </property>
+         </widget>
+        </item>
+
+        <item>
+         <widget class="QPushButton" name="nutHienMatKhau">
+          <property name="minimumSize">
+           <size>
+            <width>50</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>HIEN</string>
+          </property>
+         </widget>
+        </item>
+
+       </layout>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="labelLoi">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>28</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <widget class="QPushButton" name="nutDangNhap">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>46</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>DANG NHAP</string>
+        </property>
+       </widget>
+      </item>
+
+      <item>
+       <spacer name="spacer2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>8</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+
+      <item>
+       <widget class="QLabel" name="labelFooter">
+        <property name="text">
+         <string>He thong giam sat moi truong IoT</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+
+ <resources/>
+ <connections/>
+</ui>

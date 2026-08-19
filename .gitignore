@@ -1,0 +1,10 @@
+build-*/
+*.user
+*.bak
+*.backup
+*.before_*
+.ninja_*
+*.tar.gz
+package/bin/*
+.pio/
+.vscode/

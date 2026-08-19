@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QuanLyTaiKhoan</class>
+
+ <widget class="QDialog" name="QuanLyTaiKhoan">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>620</height>
+   </rect>
+  </property>
+
+  <property name="windowTitle">
+   <string>Quan ly tai khoan</string>
+  </property>
+
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+
+   <item>
+    <widget class="QLabel" name="labelTieuDe">
+     <property name="text">
+      <string>QUAN LY TAI KHOAN</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+font-size:22px;
+font-weight:bold;
+color:#173257;
+      </string>
+     </property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="labelMoTa">
+     <property name="text">
+      <string>Chi ADMIN duoc phep them, sua, doi mat khau va xoa tai khoan.</string>
+     </property>
+    </widget>
+   </item>
+
+   <item>
+    <widget class="QTableWidget" name="bangTaiKhoan">
+     <property name="columnCount">
+      <number>7</number>
+     </property>
+
+     <column>
+      <property name="text">
+       <string>ID</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>TAI KHOAN</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>HO TEN</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>QUYEN</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>TRANG THAI</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>TAO LUC</string>
+      </property>
+     </column>
+
+     <column>
+      <property name="text">
+       <string>DANG NHAP CUOI</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+
+   <item>
+    <layout class="QHBoxLayout" name="layoutNut">
+
+     <item>
+      <widget class="QPushButton" name="nutThem">
+       <property name="text">
+        <string>THEM</string>
+       </property>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QPushButton" name="nutSua">
+       <property name="text">
+        <string>SUA</string>
+       </property>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QPushButton" name="nutDoiMatKhau">
+       <property name="text">
+        <string>DOI MAT KHAU</string>
+       </property>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QPushButton" name="nutXoa">
+       <property name="text">
+        <string>XOA</string>
+       </property>
+      </widget>
+     </item>
+
+     <item>
+      <widget class="QPushButton" name="nutLamMoi">
+       <property name="text">
+        <string>LAM MOI</string>
+       </property>
+      </widget>
+     </item>
+
+    </layout>
+   </item>
+
+   <item>
+    <widget class="QLabel" name="labelTrangThai">
+     <property name="text">
+      <string>Tong so tai khoan: 0</string>
+     </property>
+    </widget>
+   </item>
+
+  </layout>
+ </widget>
+
+ <resources/>
+ <connections/>
+</ui>

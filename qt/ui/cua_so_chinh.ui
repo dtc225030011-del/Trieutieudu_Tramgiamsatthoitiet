@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CuaSoChinh</class>
+ <widget class="QMainWindow" name="CuaSoChinh">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>760</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Tram giam sat moi truong</string>
+  </property>
+
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+
+    <item>
+     <widget class="QFrame" name="frameMenu">
+      <property name="minimumSize">
+       <size>
+        <width>245</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>245</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+background-color:#173257;
+color:white;
+       </string>
+      </property>
+
+      <layout class="QVBoxLayout" name="verticalLayoutMenu">
+       <property name="leftMargin">
+        <number>14</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>14</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+
+       <item>
+        <widget class="QLabel" name="labelLogo">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>60</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+font-size:17px;
+font-weight:bold;
+color:white;
+          </string>
+         </property>
+         <property name="text">
+          <string>TRAM GIAM SAT
+MOI TRUONG</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QLabel" name="labelSub">
+         <property name="styleSheet">
+          <string notr="true">
+color:#9fb4cd;
+font-size:11px;
+          </string>
+         </property>
+         <property name="text">
+          <string>ESP32  •  Raspberry Pi</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnTongQuan">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>46</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>TONG QUAN</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnDieuKhien">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>46</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>DIEU KHIEN</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnLichSu">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>46</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>LICH SU</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnCanhBao">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>46</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>CANH BAO</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QPushButton" name="btnThongTin">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>46</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>THONG TIN</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>200</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+
+       <item>
+        <widget class="QLabel" name="labelFooter">
+         <property name="styleSheet">
+          <string notr="true">
+color:#88a0bb;
+font-size:11px;
+          </string>
+         </property>
+         <property name="text">
+          <string>IoT Monitor</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+
+    <item>
+     <widget class="QFrame" name="frameNoiDung">
+      <property name="styleSheet">
+       <string notr="true">
+background-color:#eef3f8;
+       </string>
+      </property>
+
+      <layout class="QVBoxLayout" name="verticalLayoutNoiDung">
+       <property name="leftMargin">
+        <number>18</number>
+       </property>
+       <property name="topMargin">
+        <number>16</number>
+       </property>
+       <property name="rightMargin">
+        <number>18</number>
+       </property>
+       <property name="bottomMargin">
+        <number>16</number>
+       </property>
+
+       <item>
+        <widget class="QLabel" name="labelTieuDe">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+background:white;
+border:1px solid #d3deea;
+border-radius:12px;
+padding-left:16px;
+font-size:22px;
+font-weight:bold;
+color:#173257;
+          </string>
+         </property>
+         <property name="text">
+          <string>GIAM SAT MOI TRUONG</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <widget class="QLabel" name="labelTongQuan">
+         <property name="styleSheet">
+          <string notr="true">
+font-size:18px;
+font-weight:bold;
+color:#173257;
+          </string>
+         </property>
+         <property name="text">
+          <string>Tong quan</string>
+         </property>
+        </widget>
+       </item>
+
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayoutThongSo">
+         <item>
+          <widget class="QGroupBox" name="groupNhietDo">
+           <property name="title">
+            <string>NHIET DO</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutNhietDo">
+            <item>
+             <widget class="QLabel" name="labelNhietDo">
+              <property name="styleSheet">
+               <string notr="true">
+font-size:26px;
+font-weight:bold;
+color:#173257;
+               </string>
+              </property>
+              <property name="text">
+               <string>-- °C</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QGroupBox" name="groupApSuat">
+           <property name="title">
+            <string>AP SUAT</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutApSuat">
+            <item>
+             <widget class="QLabel" name="labelApSuat">
+              <property name="styleSheet">
+               <string notr="true">
+font-size:26px;
+font-weight:bold;
+color:#173257;
+               </string>
+              </property>
+              <property name="text">
+               <string>-- hPa</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayoutBieuDo">
+         <item>
+          <widget class="QGroupBox" name="groupBieuDoNhietDo">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>BIEU DO NHIET DO</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutBieuDoNhietDo">
+            <item>
+             <widget class="QLabel" name="labelBieuDoNhietDo">
+              <property name="styleSheet">
+               <string notr="true">
+background:white;
+color:#9bb0c9;
+               </string>
+              </property>
+              <property name="text">
+               <string>Chua co du lieu</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QGroupBox" name="groupBieuDoApSuat">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>300</height>
+            </size>
+           </property>
+           <property name="title">
+            <string>BIEU DO AP SUAT</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutBieuDoApSuat">
+            <item>
+             <widget class="QLabel" name="labelBieuDoApSuat">
+              <property name="styleSheet">
+               <string notr="true">
+background:white;
+color:#9bb0c9;
+               </string>
+              </property>
+              <property name="text">
+               <string>Chua co du lieu</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayoutTrangThai">
+         <item>
+          <widget class="QGroupBox" name="groupCheDo">
+           <property name="title">
+            <string>CHE DO</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutCheDo">
+            <item>
+             <widget class="QLabel" name="labelCheDo">
+              <property name="text">
+               <string>CHUA CO</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+
+         <item>
+          <widget class="QGroupBox" name="groupQuat">
+           <property name="title">
+            <string>QUAT</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayoutQuat">
+            <item>
+             <widget class="QLabel" name="labelQuat">
+              <property name="text">
+               <string>--</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+
+ <resources/>
+ <connections/>
+</ui>
