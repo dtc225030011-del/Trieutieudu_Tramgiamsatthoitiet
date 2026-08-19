@@ -241,29 +241,3 @@ sudo apt install -y build-essential cmake ninja-build pkg-config \
    ```bash
    ./scripts/deploy_pi.sh
    ```
-
-> 📖 *Xem hướng dẫn cấu hình chi tiết và tự động khởi động cùng hệ thống tại [docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md).*
-
----
-
-## 🛠️ Phát triển & Đóng góp (Development & Contributing)
-
-Chúng tôi hoan nghênh mọi đóng góp từ cộng đồng! Vui lòng đọc kỹ [CONTRIBUTING.md](CONTRIBUTING.md) và [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) trước khi tạo Pull Request.
-
-### Kiểm tra định dạng mã nguồn (Code Formatting)
-```bash
-clang-format -i $(find qt/src qt/include esp32/src esp32/include -name "*.cpp" -o -name "*.h")
-```
-
----
-
-## 📄 Giấy phép (License)
-
-Dự án được phân phối dưới giấy phép **MIT License**. Xem tệp [LICENSE](LICENSE) để biết thêm thông tin chi tiết.
-
----
-
-## 👥 Tác giả & Liên hệ (Authors)
-
-- **BlynkApp04 Team** - [blynkapp04-ui](https://github.com/blynkapp04-ui)
-- Báo cáo lỗi & Đề xuất tính năng: [GitHub Issues](https://github.com/blynkapp04-ui/tram-thoi-tiet/issues)
