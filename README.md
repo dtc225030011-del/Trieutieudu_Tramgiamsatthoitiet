@@ -250,7 +250,7 @@ sudo apt install -y build-essential cmake ninja-build pkg-config \
    ```
 3. Đăng nhập với tài khoản mặc định:
    - **Tài khoản**: `admin`
-   - **Mật khẩu**: `admin123`
+   - **Mật khẩu**: `123456`
 
 ---
 
