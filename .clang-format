@@ -37,7 +37,6 @@ BraceWrapping:
 BreakBeforeBinaryOperators: None
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon
-Cpp11NumberedLiteralSuffix: true
 DerivePointerAlignment: false
 FixNamespaceComments: true
 IncludeBlocks: Regroup
