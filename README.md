@@ -1,4 +1,4 @@
-# 🌦️ Trạm Giám Sát Thời Tiết
+# 🌦️ Trạm Theo Dõi
 
 [![Qt Version](https://img.shields.io/badge/Qt-6.x%20%7C%20C%2B%2B17-41CD52?logo=qt&logoColor=white)](https://www.qt.io/)
 [![PlatformIO](https://img.shields.io/badge/PlatformIO-ESP32%20Arduino-f38b00?logo=platformio&logoColor=white)](https://platformio.org/)
