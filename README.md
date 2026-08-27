@@ -159,15 +159,22 @@ tram-thoi-tiet/
 │   ├── deploy_pi.sh                      # Tự động hóa build, đóng gói và triển khai lên Pi qua SSH/SCP
 │   ├── run_from_qtcreator.sh             # Cấu hình môi trường khi debug/chạy trực tiếp từ Qt Creator
 │   └── run_host.sh                       # Script khởi chạy ứng dụng nhanh trên máy tính Host
+├── test_esp/                             # Bộ kiểm thử đơn vị & kiểm thử tự động Firmware ESP32
+│   ├── include/                          # Header files mock / API kiểm thử
+│   ├── src/                              # Mã nguồn mock logic ESP32 phục vụ kiểm thử độc lập
+│   ├── test/                             # Các ca kiểm thử Unit Test (BMP280, TSL2561, Relay, MQTT)
+│   ├── unity/                            # Framework kiểm thử Unity C
+│   ├── BAO_CAO_TEST_CASE_VA_KET_QUA.html # Báo cáo kết quả kiểm thử định dạng HTML
+│   ├── BAO_CAO_TEST_CASE_VA_KET_QUA.md   # Báo cáo kết quả kiểm thử định dạng Markdown
+│   ├── Makefile                          # Kịch bản build và chạy toàn bộ test case
+│   ├── generate_report.py                # Script tự động trích xuất kết quả và sinh báo cáo
+│   ├── run_tests.sh                      # Shell script thực thi chuỗi kiểm thử
+│   └── README.md                         # Hướng dẫn chạy và giải thích bộ kiểm thử ESP32
 ├── .clang-format                         # Quy chuẩn định dạng mã nguồn C++ (Google Style)
 ├── .editorconfig                         # Thiết lập thống nhất định dạng file cho các IDE
 ├── .gitignore                            # Danh sách tệp tin và thư mục loại trừ khỏi Git
-├── CHANGELOG.md                          # Nhật ký chi tiết các phiên bản cập nhật
-├── CODE_OF_CONDUCT.md                    # Quy tắc ứng xử và tiêu chuẩn cộng đồng
-├── CONTRIBUTING.md                       # Hướng dẫn đóng góp mã nguồn & quy trình Git
 ├── LICENSE                               # Giấy phép bản quyền mã nguồn mở MIT
-├── README.md                             # Tài liệu giới thiệu & hướng dẫn sử dụng toàn diện
-└── SECURITY.md                           # Chính sách bảo mật và hướng dẫn báo cáo lỗ hổng
+└── README.md                             # Tài liệu giới thiệu & hướng dẫn sử dụng toàn diện
 ```
 
 ---
