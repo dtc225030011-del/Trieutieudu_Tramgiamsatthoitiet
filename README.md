@@ -1,4 +1,4 @@
-# Trạm giám sát môi trường
+# Trạm giám sát thời tiết
 
 Hệ thống IoT gồm một node ESP32 thu thập nhiệt độ, áp suất và cường độ ánh sáng; một MQTT broker làm lớp truyền thông; và ứng dụng Qt 6 chạy trên Linux/Raspberry Pi để giám sát, lưu lịch sử và điều khiển relay.
 
