@@ -160,24 +160,120 @@ Không nên sử dụng hệ thống cho môi trường cần mức bảo mật 
 ## Cấu trúc mã nguồn
 
 ```text
-esp32/
-  src/main.cpp             # vòng lặp đọc cảm biến và gửi telemetry
-  src/wifi_mqtt.cpp        # Wi-Fi, MQTT, LWT và publish telemetry
-  src/xu_ly_lenh.cpp       # chế độ, ngưỡng và điều khiển relay
-  src/bmp280.cpp           # driver BMP280
-  src/tsl2561.cpp          # driver TSL2561
-  src/relay.cpp            # điều khiển relay
-qt/
-  src/main.cpp             # khởi động, login và wiring signal/slot
-  src/app_controller.cpp   # điều phối MQTT, database, cảnh báo
-  src/mqtt_service.cpp     # libmosquitto
-  src/database_service.cpp # SQLite và tài khoản
-  src/cua_so_chinh.cpp     # giao diện, bảng lịch sử, biểu đồ tự vẽ
-  src/settings_service.cpp # INI/QSettings
-  src/csv_exporter.cpp     # lớp xuất CSV, chưa gắn vào UI
-scripts/                   # build, chạy và triển khai Raspberry Pi
-test_esp/                  # mã kiểm thử C độc lập cho một phần logic ESP32
+tram-thoi-tiet-host/
+├── .github/
+│   └── workflows/
+│       ├── code-quality.yml     # Workflow kiểm tra định dạng và chất lượng mã nguồn
+│       ├── esp32-ci.yml         # Workflow CI biên dịch firmware PlatformIO
+│       └── qt-ci.yml            # Workflow CI biên dịch ứng dụng Qt 6 Host
+├── docs/                        # Tài liệu đặc tả kỹ thuật chi tiết
+│   ├── ARCHITECTURE.md          # Kiến trúc tổng thể và luồng truyền dữ liệu
+│   ├── DEPLOYMENT_GUIDE.md      # Hướng dẫn biên dịch và triển khai thực tế
+│   ├── HARDWARE_PINOUT.md       # Sơ đồ kết nối chân GPIO và phần cứng cảm biến/relay
+│   └── MQTT_API.md              # Quy chuẩn định dạng gói tin MQTT và topics
+├── esp32/                       # Mã nguồn firmware vi điều khiển ESP32 (PlatformIO)
+│   ├── include/
+│   │   ├── bmp280.h             # Khai báo driver cảm biến nhiệt độ & áp suất BMP280
+│   │   ├── cau_hinh.example.h   # Mẫu cấu hình Wi-Fi, MQTT broker và chân GPIO
+│   │   ├── cau_hinh.h           # File cấu hình hoạt động thực tế của firmware
+│   │   ├── relay.h              # Khai báo hàm điều khiển relay quạt và đèn
+│   │   ├── tsl2561.h            # Khai báo driver cảm biến cường độ ánh sáng TSL2561
+│   │   ├── wifi_mqtt.h          # Quản lý kết nối mạng, MQTT client và publish telemetry
+│   │   └── xu_ly_lenh.h         # Xử lý lệnh nhận từ MQTT và thuật toán điều khiển tự động
+│   ├── src/
+│   │   ├── bmp280.cpp           # Hiện thực giao tiếp I2C với cảm biến BMP280
+│   │   ├── main.cpp             # Điểm khởi tạo và vòng lặp chính (đọc cảm biến 2s/lần)
+│   │   ├── relay.cpp            # Hiện thực kích mức logic điều khiển đóng/ngắt relay
+│   │   ├── tsl2561.cpp          # Hiện thực cấu hình độ lợi và đọc lux từ TSL2561
+│   │   ├── wifi_mqtt.cpp        # Hiện thực kết nối Wi-Fi/MQTT, cơ chế LWT và tự kết nối lại
+│   │   └── xu_ly_lenh.cpp       # Phân tích payload JSON lệnh/ngưỡng/chế độ và thực thi
+│   └── platformio.ini           # Cấu hình môi trường build PlatformIO và thư viện phụ thuộc
+├── package/                     # Cấu trúc thư mục gói triển khai thực thi trên Raspberry Pi
+├── qt/                          # Ứng dụng máy chủ giám sát & điều khiển giao diện Qt 6
+│   ├── CMakeLists.txt           # Cấu hình biên dịch CMake (C++17, Qt6, libmosquitto)
+│   ├── include/
+│   │   ├── app_controller.h     # Bộ điều phối trung tâm giữa UI, MQTT, Database và Settings
+│   │   ├── canh_bao_data.h      # Khai báo cấu trúc dữ liệu lưu trữ thông tin cảnh báo
+│   │   ├── csv_exporter.h       # Tiện ích xuất dữ liệu cảm biến ra file định dạng CSV
+│   │   ├── cua_so_chinh.h       # Lớp điều khiển cửa sổ chính MainWindow
+│   │   ├── dang_nhap.h          # Lớp điều khiển hộp thoại đăng nhập xác thực người dùng
+│   │   ├── database_service.h   # Dịch vụ quản trị cơ sở dữ liệu SQLite cục bộ
+│   │   ├── mqtt_service.h       # Dịch vụ giao tiếp mạng MQTT thông qua libmosquitto
+│   │   ├── quan_ly_tai_khoan.h  # Lớp điều khiển hộp thoại phân quyền & quản lý tài khoản
+│   │   ├── sensor_data.h        # Khai báo cấu trúc dữ liệu gói tin telemetry
+│   │   └── settings_service.h   # Dịch vụ lưu trữ và nạp cấu hình hệ thống từ file INI
+│   ├── resources/
+│   │   └── resources.qrc        # Định nghĩa các tài nguyên nhúng (icon, giao diện)
+│   ├── src/
+│   │   ├── app_controller.cpp   # Xử lý logic nghiệp vụ, phân tích cảnh báo, cầu nối UI - dịch vụ
+│   │   ├── csv_exporter.cpp     # Hiện thực ghi dữ liệu ra định dạng CSV UTF-8
+│   │   ├── cua_so_chinh.cpp     # Giao diện dashboard, vẽ biểu đồ thời gian thực, bảng lịch sử
+│   │   ├── dang_nhap.cpp        # Xác thực tài khoản với CSDL bằng mã băm SHA-256
+│   │   ├── database_service.cpp # Khởi tạo bảng CSDL, lưu telemetry, log cảnh báo và điều khiển
+│   │   ├── main.cpp             # Điểm bắt đầu ứng dụng, kiểm tra lock file đơn phiên bản
+│   │   ├── mqtt_service.cpp     # Kết nối broker, quản lý luồng nhận tin và bắn Qt signal
+│   │   ├── quan_ly_tai_khoan.cpp# Giao diện quản trị viên thêm/sửa/xóa/vô hiệu hóa tài khoản
+│   │   └── settings_service.cpp # Đọc/ghi thiết lập ngưỡng, thông số broker vào file INI
+│   └── ui/                      # File thiết kế giao diện đồ họa (Qt Designer)
+│       ├── cua_so_chinh.ui       # Thiết kế bố cục màn hình làm việc chính
+│       ├── dang_nhap.ui         # Thiết kế bố cục hộp thoại đăng nhập
+│       └── quan_ly_tai_khoan.ui # Thiết kế bố cục hộp thoại quản lý người dùng
+├── scripts/                     # Tập hợp shell script hỗ trợ build và triển khai
+│   ├── build_arm64.sh           # Script biên dịch gói chạy cho Raspberry Pi (ARM64)
+│   ├── build_host.sh            # Script cấu hình CMake và biên dịch Qt Host trên máy tính
+│   ├── deploy_pi.sh             # Script đóng gói và đồng bộ ứng dụng lên Raspberry Pi qua SSH
+│   ├── run_from_qtcreator.sh    # Script cấu hình môi trường khi debug/run từ Qt Creator
+│   └── run_host.sh              # Script thiết lập thư viện động và khởi chạy ứng dụng Host
+└── test_esp/                    # Bộ kiểm thử Unit Test C độc lập cho firmware ESP32
+    ├── Makefile                 # Makefile biên dịch bộ kiểm thử bằng GCC
+    ├── run_tests.sh             # Script thực thi toàn bộ test case và tổng hợp log
+    ├── generate_report.py       # Script sinh báo cáo kết quả kiểm thử tự động (HTML/Markdown)
+    ├── BAO_CAO_TEST_CASE_VA_KET_QUA.md # Báo cáo chi tiết 19/19 test cases kiểm thử
+    ├── unity/                   # Thư viện kiểm thử nhúng Unity Test Framework (C)
+    │   ├── unity.c
+    │   ├── unity.h
+    │   └── unity_internals.h
+    ├── include/                 # Khai báo interface mock cho kiểm thử
+    │   ├── esp_connectivity.h   # Mock kết nối Wi-Fi, MQTT state và LWT
+    │   ├── esp_control.h        # Mock logic điều khiển tự động và thủ công
+    │   └── esp_sensors.h        # Mock giao tiếp cảm biến BMP280, TSL2561
+    ├── src/                     # Hiện thực mock logic kiểm thử
+    │   ├── esp_connectivity.c   # Logic giả lập trạng thái mạng và publish
+    │   ├── esp_control.c        # Logic giả lập thuật toán kích relay theo ngưỡng
+    │   └── esp_sensors.c        # Logic giả lập đọc giá trị cảm biến và xử lý lỗi
+    └── test/                    # Các kịch bản kiểm thử tự động
+        ├── test_bmp280.c        # Kiểm thử đọc BMP280, dải đo, timeout và lỗi bus I2C
+        ├── test_connectivity.c  # Kiểm thử kết nối lại Wi-Fi/MQTT, publish và LWT
+        ├── test_control.c       # Kiểm thử điều khiển relay tự động và thủ công
+        ├── test_main.c          # Entry point tổng hợp chạy toàn bộ test runner
+        └── test_tsl2561.c       # Kiểm thử đọc lux TSL2561, độ lợi và giá trị biên
 ```
+
+### Chi tiết các khối thành phần
+
+1. **Firmware ESP32 (`esp32/`)**:
+   - Sử dụng PlatformIO với framework Arduino cho vi điều khiển ESP32.
+   - Quản lý đọc dữ liệu đồng thời từ 2 cảm biến trên cùng bus I2C (`BMP280` và `TSL2561`) theo chu kỳ định kỳ 2 giây.
+   - Tự động duy trì kết nối Wi-Fi/MQTT, hỗ trợ LWT (`tramthoitiet/status`) và gửi telemetry JSON (`tramthoitiet/data`).
+   - Hỗ trợ 2 chế độ điều khiển: Tự động (so khớp nhiệt độ/ánh sáng với ngưỡng cấu hình) và Thủ công (thực thi lệnh từ topic `tramthoitiet/control`).
+
+2. **Ứng dụng giám sát Qt Host (`qt/`)**:
+   - Xây dựng trên C++17 và Qt 6 (Widgets, Sql, Network, DBus).
+   - Kiến trúc module hóa theo mô hình phân tầng:
+     - `AppController`: Bộ điều phối trung tâm xử lý dữ liệu telemetry, phát hiện vi phạm ngưỡng, sinh cảnh báo và xử lý lệnh điều khiển.
+     - `MqttService`: Đóng gói thư viện `libmosquitto`, duy trì luồng giao tiếp mạng riêng biệt và đồng bộ với giao diện qua Qt Signal/Slot.
+     - `DatabaseService`: Tương tác với cơ sở dữ liệu SQLite cục bộ, lưu trữ toàn bộ lịch sử đo, nhật ký cảnh báo, lịch sử tác vụ điều khiển và thông tin tài khoản.
+     - `SettingsService`: Quản lý các thiết lập runtime (thông tin broker, ngưỡng cảnh báo, chế độ hoạt động) thông qua file INI.
+     - `MainWindow` / UI: Trực quan hóa dữ liệu tức thời, vẽ biểu đồ đường theo thời gian thực (custom render với `QPainter`), bảng lịch sử lọc theo mốc thời gian, quản lý danh sách cảnh báo và phân quyền người dùng (`ADMIN` / `USER`).
+
+3. **Bộ kiểm thử độc lập (`test_esp/`)**:
+   - Xây dựng bằng ngôn ngữ C thuần tích hợp framework **Unity Test**, độc lập hoàn toàn với phần cứng ESP32 thực tế để có thể chạy kiểm thử tức thì trên môi trường Host và CI.
+   - Bao phủ 19 test cases cho 4 module nghiệp vụ chính: cảm biến BMP280, cảm biến TSL2561, thuật toán điều khiển relay và quản lý trạng thái kết nối Wi-Fi/MQTT.
+   - Đi kèm script sinh báo cáo kết quả tự động định dạng HTML và Markdown trực quan (`BAO_CAO_TEST_CASE_VA_KET_QUA.md`).
+
+4. **Kịch bản tự động hóa (`scripts/` & `.github/workflows/`)**:
+   - Cung cấp đầy đủ shell script cho quy trình phát triển: biên dịch host (`build_host.sh`), chạy ứng dụng (`run_host.sh`), cross-compile ARM64 (`build_arm64.sh`) và deploy tự động qua mạng lên Raspberry Pi (`deploy_pi.sh`).
+   - Thiết lập GitHub Actions CI tự động kiểm tra định dạng code, biên dịch firmware ESP32 và build kiểm thử ứng dụng Qt Host khi có commit/PR mới.
 
 ## Yêu cầu môi trường
 
