@@ -1,0 +1,41 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# C++ files
+*.cpp text eol=lf
+*.h text eol=lf
+*.hpp text eol=lf
+*.ino text eol=lf
+
+# GitHub Linguist Overrides (Force 100% C++)
+*.h linguist-language=C++
+*.hpp linguist-language=C++
+*.cpp linguist-language=C++
+
+test_esp/** linguist-vendored
+test_esp/** linguist-detectable=false
+scripts/** linguist-vendored
+scripts/** linguist-detectable=false
+package/** linguist-vendored
+package/** linguist-detectable=false
+
+*.sh linguist-vendored
+*.sh linguist-detectable=false
+*.bash linguist-vendored
+*.bash linguist-detectable=false
+*.bat linguist-vendored
+*.bat linguist-detectable=false
+*.cmd linguist-vendored
+*.cmd linguist-detectable=false
+*.cmake linguist-vendored
+*.cmake linguist-detectable=false
+CMakeLists.txt linguist-vendored
+CMakeLists.txt linguist-detectable=false
+Makefile linguist-vendored
+Makefile linguist-detectable=false
+*.py linguist-vendored
+*.py linguist-detectable=false
+*.html linguist-vendored
+*.html linguist-detectable=false
+platformio.ini linguist-vendored
+platformio.ini linguist-detectable=false
